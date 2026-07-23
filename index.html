@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遵义啡鸟咖啡商学院商业合作计划书</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#0d0705}
+deck-stage:not(:defined){visibility:hidden}
+
+/* ===== DESIGN TOKENS ===== */
+:root{
+  --bg-primary:#1a0f0a;
+  --bg-deep:#0d0705;
+  --cinnabar:#c45c3e;
+  --gold:#d4a853;
+  --lapis:#2e5a8b;
+  --jade:#4a7c6f;
+  --text-primary:#f5f0e8;
+  --text-secondary:#b8a99a;
+  --text-muted:#7a6b5d;
+  --glass-bg:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --glass-highlight:rgba(255,255,255,0.12);
+
+  --type-hero:90px;
+  --type-title:64px;
+  --type-subtitle:44px;
+  --type-body:34px;
+  --type-small:28px;
+  --type-caption:24px;
+
+  --pad-top:100px;
+  --pad-bottom:80px;
+  --pad-x:100px;
+  --gap-title:52px;
+  --gap-item:32px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes scaleIn{
+  from{opacity:0;transform:scale(0.9)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes shimmer{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 20px rgba(196,92,62,0.2),0 0 60px rgba(212,168,83,0.1)}
+  50%{box-shadow:0 0 40px rgba(196,92,62,0.4),0 0 80px rgba(212,168,83,0.2)}
+}
+@keyframes borderFlow{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+/* ===== UTILITY CLASSES ===== */
+.font-display{font-family:'Noto Serif SC',serif}
+.font-body{font-family:'Noto Sans SC',sans-serif}
+
+.liquid-text{
+  background:linear-gradient(90deg,var(--cinnabar),var(--gold),var(--lapis),var(--cinnabar));
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmer 4s linear infinite;
+}
+
+.glass-card{
+  background:var(--glass-bg);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  position:relative;
+  overflow:hidden;
+}
+.glass-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1.5px;
+  background:linear-gradient(135deg,rgba(196,92,62,0.4),rgba(212,168,83,0.3),rgba(46,90,139,0.3),rgba(196,92,62,0.4));
+  background-size:300% 300%;
+  animation:borderFlow 6s ease infinite;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+.gold-line{
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0.6;
+}
+
+/* ===== SLIDE BASE ===== */
+section{
+  width:1920px;
+  height:1080px;
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== GRAIN TEXTURE OVERLAY ===== */
+section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ===== ENTRANCE ANIMATIONS (gated by active slide) ===== */
+[data-deck-active] .anim-fade-up{animation:fadeUp .8s cubic-bezier(.22,1,.36,1) both}
+[data-deck-active] .anim-fade-in{animation:fadeIn .6s ease both}
+[data-deck-active] .anim-scale-in{animation:scaleIn .7s cubic-bezier(.22,1,.36,1) both}
+
+/* ===== SLIDE 1: COVER ===== */
+.s1{background:linear-gradient(135deg,#0d0705 0%,#1a0f0a 40%,#2a1810 100%);position:relative}
+.s1 .bg-image{
+  position:absolute;inset:0;
+  background:url('./assets/images/cover-bg.jpeg') center/cover no-repeat;
+  opacity:0.55;
+}
+.s1 .bg-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,7,5,0.3) 0%,rgba(26,15,10,0.7) 60%,rgba(13,7,5,0.95) 100%);
+}
+.s1 .content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  height:100%;text-align:center;
+  padding:var(--pad-top) var(--pad-x) var(--pad-bottom);
+}
+.s1 .badge{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:12px 32px;border-radius:100px;
+  background:var(--glass-bg);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border);
+  font-size:var(--type-caption);
+  color:var(--gold);
+  letter-spacing:4px;
+  margin-bottom:48px;
+}
+.s1 .badge::before,.s1 .badge::after{
+  content:'';width:32px;height:1px;background:var(--gold);opacity:0.5;
+}
+.s1 h1{
+  font-size:var(--type-hero);
+  font-weight:900;
+  line-height:1.15;
+  margin-bottom:var(--gap-title);
+  letter-spacing:8px;
+}
+.s1 .subtitle{
+  font-size:var(--type-subtitle);
+  color:var(--text-secondary);
+  line-height:1.6;
+  max-width:1000px;
+  margin-bottom:64px;
+}
+.s1 .meta{
+  display:flex;gap:64px;
+  font-size:var(--type-caption);
+  color:var(--text-muted);
+}
+.s1 .meta-item{display:flex;align-items:center;gap:12px}
+.s1 .meta-item::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--cinnabar);
+}
+
+/* ===== SLIDE 2: PROJECT OVERVIEW ===== */
+.s2{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s2 .top-bar{display:flex;align-items:center;gap:24px;margin-bottom:60px}
+.s2 .top-bar .label{
+  font-size:var(--type-caption);color:var(--gold);letter-spacing:4px;
+}
+.s2 .top-bar .gold-line{flex:1}
+.s2 .main-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;flex:1;align-items:center}
+.s2 .left h2{
+  font-size:var(--type-title);font-weight:700;line-height:1.3;margin-bottom:36px;
+}
+.s2 .left .highlight-box{
+  padding:36px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(196,92,62,0.08),rgba(212,168,83,0.05));
+  border-left:3px solid var(--cinnabar);
+}
+.s2 .left .highlight-box p{
+  font-size:var(--type-body);line-height:1.8;color:var(--text-secondary);
+}
+.s2 .right{display:flex;flex-direction:column;gap:var(--gap-item)}
+.s2 .info-card{
+  padding:32px 36px;
+  display:flex;gap:24px;align-items:flex-start;
+}
+.s2 .info-card .num{
+  font-size:48px;font-weight:900;color:var(--cinnabar);opacity:0.4;
+  line-height:1;font-family:'Noto Serif SC',serif;
+}
+.s2 .info-card .text h3{
+  font-size:var(--type-small);color:var(--gold);margin-bottom:8px;
+}
+.s2 .info-card .text p{
+  font-size:var(--type-caption);color:var(--text-secondary);line-height:1.6;
+}
+
+/* ===== SLIDE 3: PARENT COMPANY ===== */
+.s3{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s3 .header{text-align:center;margin-bottom:60px}
+.s3 .header h2{font-size:var(--type-title);font-weight:700;margin-bottom:16px}
+.s3 .header p{font-size:var(--type-body);color:var(--text-secondary)}
+.s3 .cards-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:40px;flex:1;
+}
+.s3 .cap-card{
+  padding:48px 40px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+.s3 .cap-card .icon-wrap{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(196,92,62,0.15),rgba(212,168,83,0.1));
+  border:1px solid rgba(196,92,62,0.2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:32px;
+}
+.s3 .cap-card .icon-wrap svg{width:40px;height:40px;stroke:var(--cinnabar);fill:none;stroke-width:1.5}
+.s3 .cap-card h3{font-size:var(--type-subtitle);margin-bottom:20px}
+.s3 .cap-card ul{
+  list-style:none;text-align:left;width:100%;
+  display:flex;flex-direction:column;gap:16px;
+}
+.s3 .cap-card ul li{
+  font-size:var(--type-caption);color:var(--text-secondary);line-height:1.6;
+  padding-left:24px;position:relative;
+}
+.s3 .cap-card ul li::before{
+  content:'';position:absolute;left:0;top:14px;
+  width:8px;height:2px;background:var(--gold);
+}
+
+/* ===== SLIDE 4: MARKET PAIN POINTS ===== */
+.s4{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s4 .header{text-align:center;margin-bottom:60px}
+.s4 .header h2{font-size:var(--type-title);font-weight:700;margin-bottom:16px}
+.s4 .header p{font-size:var(--type-body);color:var(--text-secondary)}
+.s4 .pain-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;flex:1;
+}
+.s4 .pain-card{
+  padding:40px;display:flex;gap:28px;align-items:flex-start;
+}
+.s4 .pain-card .pain-num{
+  font-size:64px;font-weight:900;color:var(--cinnabar);opacity:0.25;
+  line-height:1;font-family:'Noto Serif SC',serif;min-width:80px;text-align:center;
+}
+.s4 .pain-card .pain-text h3{
+  font-size:var(--type-small);color:var(--text-primary);margin-bottom:12px;
+}
+.s4 .pain-card .pain-text p{
+  font-size:var(--type-caption);color:var(--text-secondary);line-height:1.7;
+}
+
+/* ===== SLIDE 5: CORE BUSINESS ===== */
+.s5{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s5 .header{text-align:center;margin-bottom:52px}
+.s5 .header h2{font-size:var(--type-title);font-weight:700;margin-bottom:16px}
+.s5 .header p{font-size:var(--type-body);color:var(--text-secondary)}
+.s5 .biz-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:36px;flex:1;
+}
+.s5 .biz-card{
+  padding:44px 36px;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0.01) 100%);
+}
+.s5 .biz-card .biz-tag{
+  display:inline-block;padding:6px 16px;border-radius:6px;
+  background:rgba(196,92,62,0.15);color:var(--cinnabar);
+  font-size:20px;letter-spacing:2px;margin-bottom:24px;align-self:flex-start;
+}
+.s5 .biz-card h3{font-size:var(--type-subtitle);margin-bottom:20px;line-height:1.3}
+.s5 .biz-card ul{list-style:none;flex:1;display:flex;flex-direction:column;gap:14px}
+.s5 .biz-card ul li{
+  font-size:var(--type-caption);color:var(--text-secondary);line-height:1.6;
+  padding-left:20px;position:relative;
+}
+.s5 .biz-card ul li::before{
+  content:'';position:absolute;left:0;top:12px;
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+
+/* ===== SLIDE 6: LOCATION ===== */
+.s6{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s6 .main-flex{display:flex;gap:80px;flex:1;align-items:center}
+.s6 .left{flex:1}
+.s6 .left .label{
+  font-size:var(--type-caption);color:var(--gold);letter-spacing:4px;margin-bottom:20px;
+}
+.s6 .left h2{font-size:var(--type-title);font-weight:700;line-height:1.3;margin-bottom:36px}
+.s6 .left p{font-size:var(--type-body);color:var(--text-secondary);line-height:1.8;margin-bottom:48px}
+.s6 .right{flex:1;display:flex;flex-direction:column;gap:28px}
+.s6 .loc-item{
+  padding:32px 36px;display:flex;gap:24px;align-items:flex-start;
+}
+.s6 .loc-item .loc-icon{
+  width:56px;height:56px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(212,168,83,0.15),rgba(196,92,62,0.1));
+  border:1px solid rgba(212,168,83,0.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.s6 .loc-item .loc-icon svg{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.s6 .loc-item h4{font-size:var(--type-small);margin-bottom:8px}
+.s6 .loc-item p{font-size:var(--type-caption);color:var(--text-secondary);line-height:1.6}
+
+/* ===== SLIDE 7: REVENUE MODEL ===== */
+.s7{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s7 .header{text-align:center;margin-bottom:52px}
+.s7 .header h2{font-size:var(--type-title);font-weight:700;margin-bottom:16px}
+.s7 .header p{font-size:var(--type-body);color:var(--text-secondary)}
+.s7 .rev-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;flex:1;
+}
+.s7 .rev-card{
+  padding:36px 32px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.s7 .rev-card .rev-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(196,92,62,0.12),rgba(212,168,83,0.08));
+  border:1px solid rgba(196,92,62,0.15);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;
+}
+.s7 .rev-card .rev-icon svg{width:32px;height:32px;stroke:var(--cinnabar);fill:none;stroke-width:1.5}
+.s7 .rev-card h3{font-size:var(--type-small);margin-bottom:12px}
+.s7 .rev-card p{font-size:22px;color:var(--text-secondary);line-height:1.5}
+
+/* ===== SLIDE 8: COMPETITIVE MOAT ===== */
+.s8{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s8 .header{text-align:center;margin-bottom:60px}
+.s8 .header h2{font-size:var(--type-title);font-weight:700;margin-bottom:16px}
+.s8 .header p{font-size:var(--type-body);color:var(--text-secondary)}
+.s8 .moat-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;flex:1;
+}
+.s8 .moat-card{
+  padding:44px 40px;display:flex;gap:28px;align-items:flex-start;
+}
+.s8 .moat-card .moat-icon{
+  width:72px;height:72px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(46,90,139,0.15),rgba(196,92,62,0.1));
+  border:1px solid rgba(46,90,139,0.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.s8 .moat-card .moat-icon svg{width:36px;height:36px;stroke:var(--lapis);fill:none;stroke-width:1.5}
+.s8 .moat-card h3{font-size:var(--type-small);margin-bottom:12px}
+.s8 .moat-card p{font-size:var(--type-caption);color:var(--text-secondary);line-height:1.7}
+
+/* ===== SLIDE 9: COOPERATION & PLAN ===== */
+.s9{padding:var(--pad-top) var(--pad-x) var(--pad-bottom)}
+.s9 .header{text-align:center;margin-bottom:48px}
+.s9 .header h2{font-size:var(--type-title);font-weight:700;margin-bottom:16px}
+.s9 .main-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;flex:1}
+.s9 .col h3{
+  font-size:var(--type-subtitle);margin-bottom:28px;
+  padding-bottom:16px;border-bottom:1px solid var(--glass-border);
+}
+.s9 .mode-list{display:flex;flex-direction:column;gap:20px}
+.s9 .mode-item{
+  padding:28px 32px;
+}
+.s9 .mode-item .mode-tag{
+  display:inline-block;padding:4px 14px;border-radius:4px;
+  background:rgba(196,92,62,0.12);color:var(--cinnabar);
+  font-size:20px;margin-bottom:12px;
+}
+.s9 .mode-item h4{font-size:var(--type-caption);margin-bottom:8px}
+.s9 .mode-item p{font-size:22px;color:var(--text-secondary);line-height:1.6}
+.s9 .timeline{display:flex;flex-direction:column;gap:20px}
+.s9 .tl-item{
+  padding:28px 32px;display:flex;gap:24px;align-items:flex-start;
+}
+.s9 .tl-item .tl-year{
+  font-size:36px;font-weight:900;color:var(--gold);
+  font-family:'Noto Serif SC',serif;min-width:80px;
+}
+.s9 .tl-item .tl-text h4{font-size:var(--type-caption);margin-bottom:8px}
+.s9 .tl-item .tl-text p{font-size:22px;color:var(--text-secondary);line-height:1.6}
+
+/* ===== SLIDE 10: VISION ===== */
+.s10{position:relative}
+.s10 .bg-image{
+  position:absolute;inset:0;
+  background:url('./assets/images/section-bg.jpeg') center/cover no-repeat;
+  opacity:0.4;
+}
+.s10 .bg-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,7,5,0.5) 0%,rgba(26,15,10,0.85) 50%,rgba(13,7,5,0.95) 100%);
+}
+.s10 .content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  height:100%;text-align:center;
+  padding:var(--pad-top) var(--pad-x) var(--pad-bottom);
+}
+.s10 .vision-quote{
+  font-size:var(--type-title);
+  font-weight:700;line-height:1.5;
+  max-width:1200px;margin-bottom:48px;
+}
+.s10 .vision-sub{
+  font-size:var(--type-body);color:var(--text-secondary);
+  line-height:1.8;max-width:900px;margin-bottom:64px;
+}
+.s10 .contact{
+  display:flex;gap:48px;align-items:center;
+  padding:24px 48px;border-radius:100px;
+  background:var(--glass-bg);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border);
+}
+.s10 .contact span{font-size:var(--type-caption);color:var(--text-muted)}
+.s10 .contact strong{font-size:var(--type-small);color:var(--gold);font-weight:500}
+
+/* ===== DELAY UTILITIES ===== */
+.d1{animation-delay:.1s!important}
+.d2{animation-delay:.2s!important}
+.d3{animation-delay:.3s!important}
+.d4{animation-delay:.4s!important}
+.d5{animation-delay:.5s!important}
+.d6{animation-delay:.6s!important}
+.d7{animation-delay:.7s!important}
+.d8{animation-delay:.8s!important}
+
+/* ===== PRINT ===== */
+@media print{
+  section{page-break-after:always;break-after:page}
+  section::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ==================== SLIDE 1: COVER ==================== -->
+<section data-label="封面" class="s1">
+  <div class="bg-image"></div>
+  <div class="bg-overlay"></div>
+  <div class="content">
+    <div class="badge anim-fade-in font-body">商业合作计划书</div>
+    <h1 class="font-display liquid-text anim-fade-up d1">遵义啡鸟咖啡商学院</h1>
+    <p class="subtitle font-body anim-fade-up d2">黔北首家PCA官方授权定点咖啡考级专业商学院</p>
+    <div class="gold-line anim-fade-in d3" style="width:200px;margin-bottom:48px"></div>
+    <div class="meta font-body anim-fade-up d4">
+      <div class="meta-item">陕西啡鸟咖啡文化传播有限公司</div>
+      <div class="meta-item">贵州省遵义市北京路海上中心</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 2: PROJECT OVERVIEW ==================== -->
+<section data-label="项目概况" class="s2 font-body">
+  <div class="top-bar anim-fade-in">
+    <span class="label font-display">项目整体概况</span>
+    <div class="gold-line"></div>
+  </div>
+  <div class="main-grid">
+    <div class="left">
+      <h2 class="font-display anim-fade-up d1">填补黔北精品咖啡<br/>专业教育市场空白</h2>
+      <div class="highlight-box anim-fade-up d2">
+        <p>打造黔北PCA官方授权定点考核基地，构建"咖啡技能教学—PCA国际资质认证—商用设备供销维保—精品原料长期供应—门店创业全案孵化"完整产业闭环。</p>
+      </div>
+    </div>
+    <div class="right">
+      <div class="glass-card info-card anim-fade-up d3">
+        <span class="num">01</span>
+        <div class="text">
+          <h3 class="font-display">项目主体</h3>
+          <p>陕西啡鸟咖啡文化传播有限公司，深耕咖啡全产业链十余年</p>
+        </div>
+      </div>
+      <div class="glass-card info-card anim-fade-up d4">
+        <span class="num">02</span>
+        <div class="text">
+          <h3 class="font-display">项目选址</h3>
+          <p>遵义市北京路海上中心，核心商务地段</p>
+        </div>
+      </div>
+      <div class="glass-card info-card anim-fade-up d5">
+        <span class="num">03</span>
+        <div class="text">
+          <h3 class="font-display">核心定位</h3>
+          <p>黔北首家PCA官方授权定点咖啡考级专业商学院</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 3: PARENT COMPANY ==================== -->
+<section data-label="母公司实力" class="s3 font-body">
+  <div class="header anim-fade-in">
+    <h2 class="font-display liquid-text">母公司硬核综合实力</h2>
+    <p>十余年深耕，全产业链成熟布局</p>
+  </div>
+  <div class="cards-grid">
+    <div class="glass-card cap-card anim-fade-up d1">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3 class="font-display">职业教育与PCA考级</h3>
+      <ul>
+        <li>完整课程矩阵：入门、就业班、考级班、烘焙研修、创业实战</li>
+        <li>理论授课+实景实操标准化教学模式</li>
+        <li>校内完成PCA全等级考核并获取证书</li>
+        <li>考核结业后对接本地咖啡馆就业推荐</li>
+      </ul>
+    </div>
+    <div class="glass-card cap-card anim-fade-up d2">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3 class="font-display">进口设备与维保</h3>
+      <ul>
+        <li>正规代理：西班牙欧迪姆、意大利VBM、ODK全系</li>
+        <li>整机销售+装机调试+定期保养+紧急抢修</li>
+        <li>原厂零配件更换全链条维保服务</li>
+        <li>长期批量供应精品咖啡豆及吧台耗材</li>
+      </ul>
+    </div>
+    <div class="glass-card cap-card anim-fade-up d3">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="font-display">全案运营综合能力</h3>
+      <ul>
+        <li>新店选址规划、空间动线设计、菜单研发</li>
+        <li>开业全案营销策划</li>
+        <li>老店技术、产品、运营模式升级改造</li>
+        <li>连锁品牌整体托管运营</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 4: MARKET PAIN POINTS ==================== -->
+<section data-label="市场痛点" class="s4 font-body">
+  <div class="header anim-fade-in">
+    <h2 class="font-display liquid-text">遵义市场痛点与落地必要性</h2>
+    <p>四大行业痛点，亟待专业力量破局</p>
+  </div>
+  <div class="pain-grid">
+    <div class="glass-card pain-card anim-fade-up d1">
+      <span class="pain-num font-display">01</span>
+      <div class="pain-text">
+        <h3 class="font-display">专业国际考证完全空白</h3>
+        <p>遵义仅有零散作坊式小型咖啡教学门店，无正规PCA认证本地考点。本地咖啡从业人员考取国际专业资质证书须远赴贵阳、重庆、西安等地，时间成本与经济成本居高不下。</p>
+      </div>
+    </div>
+    <div class="glass-card pain-card anim-fade-up d2">
+      <span class="pain-num font-display">02</span>
+      <div class="pain-text">
+        <h3 class="font-display">专业持证人才缺口巨大</h3>
+        <p>精品独立咖啡馆、高端酒店、民宿、地产售楼处配套咖啡吧台持续增加，具备正规资质的专业咖啡师十分稀缺，行业普遍存在招工难、在岗人员操作技术不规范等问题。</p>
+      </div>
+    </div>
+    <div class="glass-card pain-card anim-fade-up d3">
+      <span class="pain-num font-display">03</span>
+      <div class="pain-text">
+        <h3 class="font-display">创业群体缺乏专业支撑</h3>
+        <p>大量年轻创业者拥有开设咖啡店的意愿，但缺少系统化专业技术、正品进口设备正规采购渠道、成熟门店运营管理经验，自主创业试错成本极高。</p>
+      </div>
+    </div>
+    <div class="glass-card pain-card anim-fade-up d4">
+      <span class="pain-num font-display">04</span>
+      <div class="pain-text">
+        <h3 class="font-display">进口设备本地售后缺位</h3>
+        <p>遵义市面上流通的进口商用咖啡机大多没有本地化专业售后网点，设备出现故障后维修周期漫长、技术不专业，直接影响门店日常经营。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 5: CORE BUSINESS ==================== -->
+<section data-label="核心业务" class="s5 font-body">
+  <div class="header anim-fade-in">
+    <h2 class="font-display liquid-text">三大核心主营业务板块</h2>
+    <p>构建咖啡产业全链条服务生态</p>
+  </div>
+  <div class="biz-grid">
+    <div class="glass-card biz-card anim-fade-up d1">
+      <span class="biz-tag font-body">板块一</span>
+      <h3 class="font-display">PCA国际认证咖啡职业教育</h3>
+      <ul>
+        <li>休闲兴趣班：家庭手冲、日常拉花体验</li>
+        <li>职业就业全科班：零基础系统教学，结业即上岗</li>
+        <li>PCA等级专项考证班：初/中/高级全系列认证</li>
+        <li>全能开店创业班：技术+设备+运营+营销全套落地</li>
+      </ul>
+    </div>
+    <div class="glass-card biz-card anim-fade-up d2">
+      <span class="biz-tag font-body">板块二</span>
+      <h3 class="font-display">商用设备销售与维保</h3>
+      <ul>
+        <li>原装进口商用咖啡设备整机销售</li>
+        <li>设备年度包月/包年保养套餐</li>
+        <li>24小时紧急故障维修服务</li>
+        <li>长期稳定批发各类吧台原材料</li>
+      </ul>
+    </div>
+    <div class="glass-card biz-card anim-fade-up d3">
+      <span class="biz-tag font-body">板块三</span>
+      <h3 class="font-display">品牌孵化与运营托管</h3>
+      <ul>
+        <li>全流程打包孵化：调研+设计+设备+菜单+策划</li>
+        <li>老店全方位升级改造</li>
+        <li>多方联营打造本土精品连锁品牌</li>
+        <li>连锁品牌整体托管运营</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 6: LOCATION ==================== -->
+<section data-label="选址优势" class="s6 font-body">
+  <div class="main-flex">
+    <div class="left">
+      <div class="label font-display anim-fade-in">北京路海上中心</div>
+      <h2 class="font-display anim-fade-up d1">核心商圈<br/>区位优势显著</h2>
+      <p class="anim-fade-up d2">地处遵义老城北京路商务核心地带，周边写字楼密集、商业客流稳定，商务形象大气专业，同时满足日常教学培训、对外商务合作洽谈双重使用场景。</p>
+      <div class="gold-line anim-fade-in d3" style="width:120px"></div>
+    </div>
+    <div class="right">
+      <div class="glass-card loc-item anim-fade-up d2">
+        <div class="loc-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h4 class="font-display">核心商圈区位</h4>
+          <p>北京路商务核心地带，写字楼密集，商业客流稳定</p>
+        </div>
+      </div>
+      <div class="glass-card loc-item anim-fade-up d3">
+        <div class="loc-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h4 class="font-display">大范围客源辐射</h4>
+          <p>覆盖红花岗区、汇川区两大主城区，辐射播州区、仁怀市、湄潭县等周边县域</p>
+        </div>
+      </div>
+      <div class="glass-card loc-item anim-fade-up d4">
+        <div class="loc-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        </div>
+        <div>
+          <h4 class="font-display">楼宇业态高度适配</h4>
+          <p>综合商务写字楼，空间灵活划分，满足实训教室、设备展厅、商务会客、专业考场多种功能</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 7: REVENUE ==================== -->
+<section data-label="盈利体系" class="s7 font-body">
+  <div class="header anim-fade-in">
+    <h2 class="font-display liquid-text">多元化稳定盈利体系</h2>
+    <p>六大收益来源，构建稳健商业模型</p>
+  </div>
+  <div class="rev-grid">
+    <div class="glass-card rev-card anim-fade-up d1">
+      <div class="rev-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+      </div>
+      <h3 class="font-display">教育培训收益</h3>
+      <p>兴趣课程、职业班、PCA考级培训、政企团体内训</p>
+    </div>
+    <div class="glass-card rev-card anim-fade-up d2">
+      <div class="rev-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h3 class="font-display">资质认证收益</h3>
+      <p>PCA职业资格等级考试申报及证书服务费</p>
+    </div>
+    <div class="glass-card rev-card anim-fade-up d3">
+      <div class="rev-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </div>
+      <h3 class="font-display">设备经销收益</h3>
+      <p>进口商用咖啡机、磨豆机、吧台器具销售差价</p>
+    </div>
+    <div class="glass-card rev-card anim-fade-up d4">
+      <div class="rev-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3 class="font-display">维保持续收益</h3>
+      <p>年度保养套餐、上门维修、原厂零配件更换</p>
+    </div>
+    <div class="glass-card rev-card anim-fade-up d5">
+      <div class="rev-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      </div>
+      <h3 class="font-display">原料复购收益</h3>
+      <p>精品咖啡豆、饮品耗材长期稳定批发回款</p>
+    </div>
+    <div class="glass-card rev-card anim-fade-up d6">
+      <div class="rev-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3 class="font-display">全案孵化收益</h3>
+      <p>新店策划、运营托管、品牌升级项目服务费</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 8: COMPETITIVE MOAT ==================== -->
+<section data-label="竞争壁垒" class="s8 font-body">
+  <div class="header anim-fade-in">
+    <h2 class="font-display liquid-text">项目独家核心竞争壁垒</h2>
+    <p>四大壁垒构筑护城河，难以复制</p>
+  </div>
+  <div class="moat-grid">
+    <div class="glass-card moat-card anim-fade-up d1">
+      <div class="moat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <h3 class="font-display">区域独家资质壁垒</h3>
+        <p>遵义市内唯一能够在校内独立完成PCA咖啡师考核、发证的专业咖啡商学院，具备极强区域稀缺性，普通咖啡小店、小型培训机构无法复制。</p>
+      </div>
+    </div>
+    <div class="glass-card moat-card anim-fade-up d2">
+      <div class="moat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div>
+        <h3 class="font-display">全产业链源头壁垒</h3>
+        <p>依托运营十余年的老牌总部企业，手握海外咖啡设备一级代理权以及整套成熟标准化教学体系，本地零散小作坊完全不具备同等竞争实力。</p>
+      </div>
+    </div>
+    <div class="glass-card moat-card anim-fade-up d3">
+      <div class="moat-icon">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </div>
+      <div>
+        <h3 class="font-display">一站式闭环服务壁垒</h3>
+        <p>构建从学员学习考证、商用设备采购、长期售后维保、全程开店创业扶持完整闭环，客户粘性高，长期复购收益稳定。</p>
+      </div>
+    </div>
+    <div class="glass-card moat-card anim-fade-up d4">
+      <div class="moat-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <div>
+        <h3 class="font-display">成熟标准化落地壁垒</h3>
+        <p>总部全套成型教材、PCA考级规范、门店运营方案可直接复制落地，无需从零研发摸索，省去大量试错时间与资金成本。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: COOPERATION & 3-YEAR PLAN ==================== -->
+<section data-label="合作与规划" class="s9 font-body">
+  <div class="header anim-fade-in">
+    <h2 class="font-display liquid-text">合作落地模式与三年规划</h2>
+    <p>灵活多元的合作路径，清晰可执行的阶段性目标</p>
+  </div>
+  <div class="main-grid">
+    <div class="col">
+      <h3 class="font-display">三大合作落地模式</h3>
+      <div class="mode-list">
+        <div class="glass-card mode-item anim-fade-up d1">
+          <span class="mode-tag">模式一</span>
+          <h4 class="font-display">合资联营模式</h4>
+          <p>双方共同出资组建本地运营主体，按股权比例收益分红</p>
+        </div>
+        <div class="glass-card mode-item anim-fade-up d2">
+          <span class="mode-tag">模式二</span>
+          <h4 class="font-display">区域独家品牌授权</h4>
+          <p>授予遵义全市独家运营权限，按期缴纳品牌授权及技术服务费</p>
+        </div>
+        <div class="glass-card mode-item anim-fade-up d3">
+          <span class="mode-tag">模式三</span>
+          <h4 class="font-display">政企/校企战略合作</h4>
+          <p>对接职业院校、人社部门、文旅系统，承接技能培训与创业扶持</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h3 class="font-display">三年阶段性发展规划</h3>
+      <div class="timeline">
+        <div class="glass-card tl-item anim-fade-up d4">
+          <span class="tl-year">Y1</span>
+          <div class="tl-text">
+            <h4 class="font-display">启动建设期</h4>
+            <p>完成校区装修与设备搭建，申请PCA定点考点资质，全线课程对外招生，树立黔北品牌名片</p>
+          </div>
+        </div>
+        <div class="glass-card tl-item anim-fade-up d5">
+          <span class="tl-year">Y2</span>
+          <div class="tl-text">
+            <h4 class="font-display">区域扩张期</h4>
+            <p>覆盖各县域招生，拓展企业定制内训，打造精品样板店，辐射黔北周边城市</p>
+          </div>
+        </div>
+        <div class="glass-card tl-item anim-fade-up d6">
+          <span class="tl-year">Y3</span>
+          <div class="tl-text">
+            <h4 class="font-display">规模化品牌期</h4>
+            <p>打造标杆级职业教育基地，开放周边区域分校加盟，形成三大主营业务稳定格局</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 10: VISION ==================== -->
+<section data-label="合作愿景" class="s10">
+  <div class="bg-image"></div>
+  <div class="bg-overlay"></div>
+  <div class="content font-body">
+    <div class="gold-line anim-fade-in" style="width:120px;margin-bottom:48px"></div>
+    <h2 class="vision-quote font-display liquid-text anim-fade-up d1">携手深耕黔北咖啡产业<br/>共建遵义PCA专业咖啡标杆基地</h2>
+    <p class="vision-sub anim-fade-up d2">紧抓遵义专业咖啡教育市场空白重大机遇，依托陕西啡鸟咖啡十余年全产业链积淀，补齐精品咖啡行业三大短板：专业持证人才稀缺、国际等级认证缺失、商用进口设备无本地化专业售后。</p>
+    <div class="contact anim-fade-up d3">
+      <span>对接人：</span><strong>贺老师</strong>
+      <span style="width:1px;height:20px;background:var(--glass-border)"></span>
+      <span>电话：</span><strong>15329229696</strong>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="./deck-stage.js"></script>
+</body>
+</html>
